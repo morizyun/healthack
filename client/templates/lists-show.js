@@ -64,7 +64,7 @@ var deleteList = function(list) {
     return alert("貴方はこのリストを削除できません");
   }
 
-  var message = "本当にこのリストを削除しますか？" + list.name + "?";
+  var message = "本当にこのリスト「" + list.name + "」を削除しますか?";
   if (confirm(message)) {
     // we must remove each item individually from the client
     Todos.find({listId: list._id}).forEach(function(todo) {
