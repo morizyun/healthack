@@ -23,11 +23,11 @@ Template.signin.events({
     var errors = {};
 
     if (! email) {
-      errors.email = 'Email is required';
+      errors.email = 'メールアドレスは必須です';
     }
 
     if (! password) {
-      errors.password = 'Password is required';
+      errors.password = 'パスワードは必須です';
     }
     
     Session.set(ERRORS_KEY, errors);

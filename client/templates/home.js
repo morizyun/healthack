@@ -1,10 +1,10 @@
-var ERRORS_KEY = 'joinErrors';
+var ERRORS_KEY = 'homeErrors';
 
-Template.join.onCreated(function() {
+Template.home.onCreated(function() {
   Session.set(ERRORS_KEY, {});
 });
 
-Template.join.helpers({
+Template.home.helpers({
   errorMessages: function() {
     return _.values(Session.get(ERRORS_KEY));
   },
@@ -13,7 +13,7 @@ Template.join.helpers({
   }
 });
 
-Template.join.events({
+Template.home.events({
   'submit': function(event, template) {
     event.preventDefault();
     var email = template.$('[name=email]').val();

@@ -18,34 +18,20 @@
         <div class="nav-group right">
           <div class="nav-item options-mobile">
             <select class="list-edit">
-              <option disabled selected>Select an action</option>
-              {{#if userId}}
-                <option value="public">Make Public</option>
-              {{else}}
-                <option value="private">Make Private</option>
-              {{/if}}
-              <option value="delete">Delete</option>
+              <option value="delete">削除</option>
             </select>
             <span class="icon-cog"></span>
           </div>
           <div class="options-web">
-            <a class="js-toggle-list-privacy nav-item">
-              {{#if userId}}
-                <span class="icon-lock" title="Make list public"></span>
-              {{else}}
-                <span class="icon-unlock" title="Make list private"></span>
-              {{/if}}
-            </a>
-
             <a class="js-delete-list nav-item">
-              <span class="icon-trash" title="Delete list"></span>
+              <span class="icon-trash" title="リストを削除"></span>
             </a>
           </div>
         </div>
       {{/if}}
 
       <form class="js-todo-new todo-new input-symbol">
-        <input type="text" placeholder="Type to add new tasks">
+        <input type="text" placeholder="新しい項目を登録してください">
         <span class="icon-add js-todo-add"></span>
       </form>
     </nav>
@@ -60,14 +46,14 @@
             {{> todosItem}}
           {{else}}
             <div class="wrapper-message">
-              <div class="title-message">No tasks here</div>
-              <div class="subtitle-message">Add new tasks using the field above</div>
+              <div class="title-message">このリストには項目が登録されていません</div>
+              <div class="subtitle-message">新しい項目を追加してください</div>
             </div>
           {{/each}}
         {{/with}}
       {{else}}
           <div class="wrapper-message">
-            <div class="title-message">Loading tasks...</div>
+            <div class="title-message">タスクの読み込み</div>
           </div>
       {{/if}}
     </div>

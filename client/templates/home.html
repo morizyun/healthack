@@ -1,0 +1,45 @@
+<template name="home">
+    <div class="page home">
+        <nav>
+            <div class="nav-group">
+                <a href="#" class="js-menu nav-item"><span class="icon-list-unordered"></span></a>
+            </div>
+        </nav>
+
+        <div class="content-scrollable">
+            <div class="wrapper-home">
+                <h1 class="title-home">Healthack.me</h1>
+                <p class="subtitle-home" >毎日1分、貴方の大切な健康を記録する</p>
+                <p class="form-description" >完全無料。会員登録はこちら</p>
+                <form>
+                    {{#if errorMessages}}
+                        <div class="list-errors">
+                            {{#each errorMessages}}
+                                <div class="list-item">{{this}}</div>
+                            {{/each}}
+                        </div>
+                    {{/if}}
+
+                    <div class="input-symbol  {{errorClass 'email'}}">
+                        <input type="email" name="email" placeholder="メールアドレス" />
+                        <span class="icon-email" title="メールアドレス"></span>
+                    </div>
+
+                    <div class="input-symbol  {{errorClass 'password'}}">
+                        <input type="password" name="password" placeholder="パスワード" />
+                        <span class="icon-lock" title="パスワード"></span>
+                    </div>
+
+                    <div class="input-symbol {{errorClass 'confirm'}}">
+                        <input type="password" name="confirm" placeholder="パスワード(確認用)" />
+                        <span class="icon-lock" title="パスワード(確認用)"></span>
+                    </div>
+
+                    <button type="submit" class="btn-primary">登録</button>
+                </form>
+            </div>
+
+            <a href="{{pathFor 'signin'}}" class="link-home-alt">ログインページはこちら</a>
+        </div>
+    </div>
+</template>

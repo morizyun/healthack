@@ -13,24 +13,22 @@
             {{emailLocalPart}}
           </a>
           {{#if userMenuOpen}}
-            <a class="js-logout btn-secondary">Logout</a>
+            <a class="js-logout btn-secondary">ログアウト</a>
           {{/if}}
         </div>
       {{else}}
         <div class="btns-group">
-          <a href="{{pathFor 'signin'}}" class="btn-secondary">Sign In</a>
-          <a href="{{pathFor 'join'}}" class="btn-secondary">Join</a>
+          <a href="{{pathFor 'signin'}}" class="btn-secondary">ログイン</a>
+          <a href="{{pathFor 'join'}}" class="btn-secondary">新規登録</a>
         </div>
       {{/if}}
 
+    {{#if currentUser}}
       <div class="list-todos">
-        <a class="js-new-list link-list-new"><span class="icon-plus"></span>New List</a>
+        <a class="js-new-list link-list-new"><span class="icon-plus"></span>新規リストの作成</a>
 
         {{#each lists}}
           <a href="{{pathFor 'listsShow'}}" class="list-todo {{activeListClass}}" title="{{name}}">
-            {{#if userId}}
-              <span class="icon-lock"></span>
-            {{/if}}
             {{#if incompleteCount}}
               <span class="count-list">{{incompleteCount}}</span>
             {{/if}}
@@ -38,7 +36,8 @@
           </a>
         {{/each}}
 
-      </div>
+        </div>
+      {{/if}}
     </section>
 
     {{#unless connected}}
@@ -46,8 +45,8 @@
         <div class="notification">
           <span class="icon-sync"></span>
           <div class="meta">
-            <div class="title-notification">Trying to connect</div>
-            <div class="description">There seems to be a connection issue</div>
+            <div class="title-notification">サーバーに接続中</div>
+            <div class="description">長時間かかる場合はリロードしてみてください</div>
           </div>
         </div>
       </div>
