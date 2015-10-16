@@ -11,9 +11,9 @@ Meteor.publish('Lists', function() {
         },
         {name: "食事",
           items: [
-            "朝食",
+            "夕食",
             "昼食",
-            "夕食"
+            "朝食"
           ]
         },
         {name: "運動",
@@ -28,14 +28,15 @@ Meteor.publish('Lists', function() {
         var list_id = Lists.insert({
           userId: user_id,
           name: list.name,
-          incompleteCount: list.items.length
         });
 
         // Create Todos
         _.each(list.items, function(text) {
           Todos.insert({
             listId: list_id,
+            userId: user_id,
             text: text,
+            checkedDays: [],
             createdAt: new Date(timestamp)
           });
           timestamp += 1; // ensure unique timestamp.
@@ -55,8 +56,6 @@ Meteor.publish('Lists', function() {
   }
 });
 
-Meteor.publish('todos', function(listId) {
-  check(listId, String);
-
-  return Todos.find({listId: listId});
+Meteor.publish('todos', function(userId) {
+  return Todos.find({ userId: userId }, {sort: {createdAt : -1}});
 });

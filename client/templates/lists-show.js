@@ -141,11 +141,11 @@ Template.listsShow.events({
 
     Todos.insert({
       listId: this._id,
+      userId: Meteor.userId(),
       text: $input.val(),
-      checked: false,
+      checkedDays: [],
       createdAt: new Date()
     });
-    Lists.update(this._id, {$inc: {incompleteCount: 1}});
     $input.val('');
   }
 });

@@ -17,7 +17,7 @@
           {{/if}}
         </div>
       {{else}}
-        <div class="btns-group">
+        <div class="btns-group-vertical">
           <a href="{{pathFor 'signin'}}" class="btn-secondary">ログイン</a>
           <a href="{{pathFor 'join'}}" class="btn-secondary">新規登録</a>
         </div>
@@ -29,10 +29,8 @@
 
         {{#each lists}}
           <a href="{{pathFor 'listsShow'}}" class="list-todo {{activeListClass}}" title="{{name}}">
-            {{#if incompleteCount}}
-              <span class="count-list">{{incompleteCount}}</span>
-            {{/if}}
-            {{name}}
+          <span class="count-list">{{incompleteTodoCount}}</span>
+          {{name}}
           </a>
         {{/each}}
 
