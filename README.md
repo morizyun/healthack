@@ -1,6 +1,6 @@
 # Healthack
 
-Healthack is a self check list for health care.
+Healthack is a self check list application for health care.
 
 It was built with [Meteor](http://meteor.com).
 

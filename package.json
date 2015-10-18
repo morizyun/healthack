@@ -1,0 +1,19 @@
+{
+  "name": "healthack.me",
+  "version": "1.0.0",
+  "description": "Healthack is a self check list application for health care.",
+  "main": "mobile-config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/morizyun/healthack.git"
+  },
+  "author": "morizyun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/morizyun/healthack/issues"
+  },
+  "homepage": "https://github.com/morizyun/healthack#readme"
+}
