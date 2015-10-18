@@ -56,7 +56,7 @@ var editList = function(list, template) {
 
 var saveList = function(list, template) {
   Session.set(EDITING_KEY, false);
-  Meteor.call('listUpdate', {listId: list.id, name: template.$('[name=name]').val()});
+  Meteor.call('listUpdate', {listId: list._id, name: template.$('[name=name]').val()});
 };
 
 var deleteList = function(list) {
