@@ -56,8 +56,8 @@ var editList = function(list, template) {
 
 var saveList = function(list, template) {
   Session.set(EDITING_KEY, false);
-  Lists.update(list._id, {$set: {name: template.$('[name=name]').val()}});
-}
+  Meteor.call('listUpdate', {listId: list.id, name: template.$('[name=name]').val()});
+};
 
 var deleteList = function(list) {
   if (! list.userId && Lists.find({userId: {$exists: false}}).count() === 1) {
@@ -66,12 +66,7 @@ var deleteList = function(list) {
 
   var message = "本当にこのリスト「" + list.name + "」を削除しますか?";
   if (confirm(message)) {
-    // we must remove each item individually from the client
-    Todos.find({listId: list._id}).forEach(function(todo) {
-      Todos.remove(todo._id);
-    });
-    Lists.remove(list._id);
-
+    Meteor.call('listDelete', list._id);
     Router.go('home');
     return true;
   } else {
@@ -136,16 +131,11 @@ Template.listsShow.events({
     event.preventDefault();
 
     var $input = $(event.target).find('[type=text]');
-    if (! $input.val())
-      return;
+    if (! $input.val()) return;
 
-    Todos.insert({
-      listId: this._id,
-      userId: Meteor.userId(),
-      text: $input.val(),
-      checkedDays: [],
-      createdAt: new Date()
-    });
+    Meteor.call('todoInsert', {listId: this._id, text: $input.val()});
+
+    // Input を 空 にする
     $input.val('');
   }
 });

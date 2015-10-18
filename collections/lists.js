@@ -35,3 +35,32 @@ Lists.defaultName = function() {
 
   return nextName;
 };
+
+Meteor.methods({
+  listInsert: function() {
+    var list = {name: Lists.defaultName(), userId: Meteor.user()._id}
+    list._id = Lists.insert(list);
+    return list;
+  },
+  listUpdate: function(attributes) {
+    check(attributes, {listId: String, name: String});
+
+    // 対象の list がない場合は処理終了
+    var list = List.findOne({_id: attributes.listId, userId: Meteor.userId()});
+    if (list == null) return false;
+
+    Lists.update(attributes.listId, {$set: {name: attributes.name}});
+  },
+  listDelete: function(listId) {
+    check(listId, String);
+
+    // 対象の list がない場合は処理終了
+    var list = List.findOne({_id: listId, userId: Meteor.userId()});
+    if (list == null) return false;
+
+    Todos.find({listId: listId, userId: Meteor.userId()}).forEach(function(todo) {
+      Todos.remove(todo._id);
+    });
+    Lists.remove(listId);
+  }
+});

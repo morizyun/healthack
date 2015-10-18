@@ -118,9 +118,8 @@ Template.appBody.events({
   },
 
   'click .js-new-list': function() {
-    var list = {name: Lists.defaultName(), userId: Meteor.user()._id};
-    list._id = Lists.insert(list);
-
-    Router.go('listsShow', list);
+    Meteor.call('listInsert', function (error, list) {
+      Router.go('listsShow', list);
+    });
   }
 });

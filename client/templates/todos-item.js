@@ -15,23 +15,7 @@ Template.todosItem.helpers({
 Template.todosItem.events({
   'change [type=checkbox]': function(event) {
     var checked = $(event.target).is(':checked');
-
-    // todos を取得
-    var todo = Todos.find({ _id: this.id });
-
-    // 変更済の日付 を更新
-    var checkedDays;
-    if (checked) {
-      checkedDays = (todo.checkedDays instanceof Array) ? todo.checkedDays : [];
-      checkedDays.push(getDate());
-    } else {
-      // 一致する日付を削除
-      checkedDays = checkedDays.filter(function(v){
-        return v != getDate();
-      });
-    }
-
-    Todos.update(this._id, {$set: {checkedDays: checkedDays}});
+    Meteor.call('todoCheckUpdate', {todoId: this._id, checked: checked});
   },
 
   'focus input[type=text]': function(event) {
@@ -55,12 +39,12 @@ Template.todosItem.events({
   // we don't flood the server with updates (handles the event at most once
   // every 300ms)
   'keyup input[type=text]': _.throttle(function(event) {
-    Todos.update(this._id, {$set: {text: event.target.value}});
+    Meteor.call('todoUpdate', {todoId: this._id, text: event.target.value})
   }, 300),
 
   // handle mousedown otherwise the blur handler above will swallow the click
   // on iOS, we still require the click event so handle both
   'mousedown .js-delete-item, click .js-delete-item': function() {
-    Todos.remove(this._id);
+    Meteor.call('todoDelete', this._id);
   }
 });
