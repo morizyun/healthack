@@ -32,8 +32,13 @@
 }
 
 .font-m2() {
-  font-size: 24px;
-  line-height: 28px;
+  font-size: 16px;
+  line-height: 20px;
+
+  @media screen and (min-width: 40em) { // For Desktop
+    font-size: 24px;
+    line-height: 28px;
+  }
 }
 
 .font-m1() {
