@@ -91,7 +91,7 @@ Template.appBody.helpers({
   },
   incompleteTodoCount: ReactivePromise(function (list) {
     return Meteor.callPromise("listIncompleteTodoCount", {listId: list._id, checkedAt: getDate()});
-  }, "-")
+  }, "0")
 });
 
 Template.appBody.events({
