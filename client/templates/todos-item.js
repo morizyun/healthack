@@ -1,12 +1,14 @@
 var EDITING_KEY = 'EDITING_TODO_ID';
 
 Template.todosItem.helpers({
-  checked: function() {
-    return this.checked();
-  },
-  checkedClass: function() {
-    return this.checked() && 'checked';
-  },
+  checked: ReactivePromise(function (todo) {
+    return Meteor.callPromise("todoChecked", {todoId: todo._id, checkedAt: getDate()});
+  }, true),
+
+  checkedClass: ReactivePromise(function (todo) {
+    return Meteor.callPromise("todoCheckedStr", {todoId: todo._id, checkedAt: getDate()});
+  }, ''),
+
   editingClass: function() {
     return Session.equals(EDITING_KEY, this._id) && 'editing';
   }
@@ -15,7 +17,7 @@ Template.todosItem.helpers({
 Template.todosItem.events({
   'change [type=checkbox]': function(event) {
     var checked = $(event.target).is(':checked');
-    Meteor.call('todoCheckUpdate', {todoId: this._id, checked: checked});
+    Meteor.call('todoCheckUpdate', {todoId: this._id, checked: checked, checkedAt: getDate()});
   },
 
   'focus input[type=text]': function(event) {

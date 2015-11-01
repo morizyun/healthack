@@ -29,7 +29,7 @@
 
         {{#each lists}}
           <a href="{{pathFor 'listsShow'}}" class="list-todo {{activeListClass}}" title="{{name}}">
-          <span class="count-list">{{incompleteTodoCount}}</span>
+          <span class="count-list">{{incompleteTodoCount this}}</span>
           {{name}}
           </a>
         {{/each}}

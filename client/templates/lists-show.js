@@ -43,7 +43,11 @@ Template.listsShow.helpers({
 
   todos: function(listId) {
     return Todos.find({listId: listId}, {sort: {createdAt : -1}});
-  }
+  },
+
+  incompleteTodoCount: ReactivePromise(function (list) {
+    return Meteor.callPromise("listIncompleteTodoCount", {listId: list._id, checkedAt: getDate()});
+  }, "0")
 });
 
 var editList = function(list, template) {

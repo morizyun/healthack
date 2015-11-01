@@ -50,12 +50,12 @@ Meteor.publish('Lists', function() {
       })
     }
 
-    return Lists.find({userId: this.userId});
+    return Lists.find({userId: this.userId}, {sort: {name: 1}});
   } else {
     this.ready();
   }
 });
 
 Meteor.publish('todos', function(userId) {
-  return Todos.find({ userId: userId }, {sort: {createdAt : -1}});
+  return Todos.find({userId: userId}, {sort: {createdAt: -1}});
 });
