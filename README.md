@@ -10,7 +10,7 @@ It was built with [Meteor](http://meteor.com).
 
 ## Description in Japanese
 
-* メインの目的は、Meteor.js の勉強
+* このアプリを制作した理由は Meteor.js の勉強です。
 * サービスの目的は、簡単な健康管理のチェックリスト
 
 ## Request in Japanese

@@ -3,7 +3,7 @@ var EDITING_KEY = 'EDITING_TODO_ID';
 Template.todosItem.helpers({
   checked: ReactivePromise(function (todo) {
     return Meteor.callPromise("todoChecked", {todoId: todo._id, checkedAt: getDate()});
-  }, true),
+  }, false),
 
   checkedClass: ReactivePromise(function (todo) {
     return Meteor.callPromise("todoCheckedStr", {todoId: todo._id, checkedAt: getDate()});
